@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-contact',
   template: `
-    <section class="hero is-primary is-bold">
-    <div class="hero body">
+    <section class="hero is-info">
+    <div class="hero-body">
     <div class="container">
       <h1 class="title">Skontaktuj się z nami!</h1>
     </div>
@@ -15,23 +15,56 @@ import { Component, OnInit } from '@angular/core';
     <div class="container">
 
       <!--Contact form -->
-      <form (ngSubmit)="submitForm()">
+      <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+      {{contactForm.valid}}
         <!-- Name -->
         <div class="field">
           <label class="label">Imię</label>
-          <input type="text" name="name" class="input" [(ngModel)]="name">
+          <input 
+            type="text" 
+            name="name" 
+            class="input" 
+            [(ngModel)]="name"
+            #nameInput="ngModel" 
+            required>
+
+          <div class="help is-error" *ngIf="nameInput.invalid && nameInput.touched">
+            Twoje imię jest wymagane.
+          </div>
         </div>
 
         <!-- Surname -->
         <div class="field">
           <label class="label">Nazwisko</label>
-          <input type="text" name="surname" class="input" [(ngModel)]="surname">
+          <input 
+            type="text" 
+            name="surname" 
+            class="input" 
+            [(ngModel)]="surname"
+            #surnameInput="ngModel"
+            required>
+
+          <div class="help is-error" *ngIf="surnameInput.invalid && surnameInput.touched">
+            Twoje nazwisko jest wymagane.
+          </div>  
         </div>
 
         <!-- Email -->
         <div class="field">
-          <label class="label">Email</label>
-          <input type="email" name="email" class="input" [(ngModel)]="email">
+          <label class="label">E-mail</label>
+          <input 
+            type="email" 
+            name="email" 
+            class="input" 
+            [(ngModel)]="email"
+            #emailInput="ngModel"
+            required
+            email>
+
+          <div class="help is-error" *ngIf="emailInput.invalid && emailInput.touched">
+            Twój adres e-mail jest wymagany i musi być poprawnym adresem e-mail.
+          </div>
+        
         </div>
 
         <!-- Message -->
@@ -41,7 +74,10 @@ import { Component, OnInit } from '@angular/core';
         </div>
 
         <!-- Button -->
-        <button type="submit" class="button is-large is-warning">
+        <button 
+          type="submit" 
+          class="button is-large is-link is-rounded"
+          [disabled]="contactForm.invalid">
           Wyślij!
         </button>
 
@@ -68,7 +104,7 @@ export class ContactComponent implements OnInit  {
   ngOnInit() {}
 
   submitForm(){
-    const message = `My name is ${this.name}. My surname is ${this.surname}. My email is ${this.email}. My message is ${this.message}`;
+    const message = `Nazywam się ${this.name}. Moje nazwisko to ${this.surname}. Mój email to ${this.email}. Moja wiadomość to ${this.message}`;
     //grab all the fields and their values
     alert(message)
   }  

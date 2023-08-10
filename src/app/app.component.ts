@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
     <!--Header-->
     <app-header></app-header>
    
-    <app-contact></app-contact>
 
-    <app-home></app-home>
 
     <!--Routes-->
     <router-outlet></router-outlet>
