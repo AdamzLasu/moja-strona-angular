@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
 
       <!--Contact form -->
       <form (ngSubmit)="submitForm()" #contactForm="ngForm">
-      {{contactForm.valid}}
+      
         <!-- Name -->
         <div class="field">
           <label class="label">Imię</label>

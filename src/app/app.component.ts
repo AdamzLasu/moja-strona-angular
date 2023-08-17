@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
     <!--Header-->
     <app-header></app-header>
    
-
-
     <!--Routes-->
     <router-outlet></router-outlet>
 
@@ -17,5 +15,6 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class AppComponent {
-  title = 'moja-strona-angular';
+  
+  constructor() {}
 }

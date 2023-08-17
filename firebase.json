@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "dist/moja-strona-angular",
+    "site":"moja-strona-angular",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

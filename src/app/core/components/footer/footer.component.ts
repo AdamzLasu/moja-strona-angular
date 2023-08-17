@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
     .footer{
       background: linear-gradient(135deg, rgba(29,14,128,100), rgba(255,158,91,100));
       color: black;
-      Font-weight: bold;
+      font-weight: bold;
     }
     
   `]
