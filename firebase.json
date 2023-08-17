@@ -1,7 +1,7 @@
 {
   "hosting": {
     "public": "dist/moja-strona-angular",
-    "site":"moja-strona-angular",
+    "site": "moja-strona-angular",
     "ignore": [
       "firebase.json",
       "**/.*",
