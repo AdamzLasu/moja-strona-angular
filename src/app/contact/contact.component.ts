@@ -23,8 +23,8 @@ import { Component, OnInit } from '@angular/core';
           <input 
             type="text" 
             name="name" 
-            class="input" 
-            [(ngModel)]="name"
+            class="input"
+            [(ngModel)]="name" 
             #nameInput="ngModel" 
             required>
 
@@ -104,8 +104,10 @@ export class ContactComponent implements OnInit  {
   ngOnInit() {}
 
   submitForm(){
-    const message = `Nazywam się ${this.name}. Moje nazwisko to ${this.surname}. Mój email to ${this.email}. Moja wiadomość to ${this.message}`;
+    //const message = `Nazywam się ${this.name}. Moje nazwisko to ${this.surname}. Mój email to ${this.email}. Moja wiadomość to ${this.message}`;
     //grab all the fields and their values
-    alert(message)
-  }  
-}
+    //alert(message)
+  }
+}  
+
+ 

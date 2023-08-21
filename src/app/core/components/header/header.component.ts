@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
       <!--Logo-->
       <div class="navbar-brand">
         <a class="navbar-item">
-          <img src="assets/img/angular-logo.png">
+          <img routerLink="/" src="assets/img/angular-logo.png">
         </a>
       </div>
 
@@ -16,6 +16,7 @@ import { Component } from '@angular/core';
       <div class="navbar-end">
         <a class="navbar-item" routerLink="/">Strona Główna</a>
         <a class="navbar-item" routerLink="/contact">Kontakt</a>
+        <a class="navbar-item" routerLink="/kontakt">Kontakt2</a>
         <a class="navbar-item" routerLink="/users">Użytkownicy</a>
       </div>
       </div>
