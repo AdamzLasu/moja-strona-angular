@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
+import { ListaComponent } from './lista/lista.component';
 
 
 
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'kontakt',
     component: KontaktComponent
+  },
+  {
+    path: 'lista',
+    component: ListaComponent
   },
   {
     path: 'users',

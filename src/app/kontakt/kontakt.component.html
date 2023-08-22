@@ -9,7 +9,7 @@
 <section class="section">
   <div class="container">
 
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
       <div class="field">
         <label class="label">
           Imię:
@@ -36,7 +36,7 @@
         <label class="label">
           E-mail:
         </label>
-        <input type="email" class="input" formControlName="email" placeholder="Your email">
+        <input type="email" class="input" formControlName="email" placeholder="Twója email">
 
         <div class="help is-error"
           *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
@@ -47,14 +47,22 @@
         <label class="label">
           Wiadomość:
         </label>
-        <input class="textarea" formControlName="message" placeholder="Your message">
+        <input class="textarea" formControlName="message" placeholder="Twoja wiadomość">
 
         <div class="help is-error"
           *ngIf="myForm.get('message').invalid && (myForm.get('message').dirty || myForm.get('message').touched)">
           Wiadomości muszą mieć co najmniej 15 znaków.
         </div>
       </div>
-      <button class="button is-large is-link is-rounded" type="submit" [disabled]="myForm.invalid">Wyślij</button>
+      <div class="field">
+        <button class="button is-large is-link is-rounded" (click)="onSubmit(myForm.value)" type="reset"
+          [disabled]="myForm.invalid">Wyślij</button>
+      </div>
+      <div class="field">
+        <label class="label">
+          <p class="has-text-success" *ngIf='isSubmit'>{{ SubmitMessage }}</p>
+        </label>
+      </div>
     </form>
   </div>
 </section>
