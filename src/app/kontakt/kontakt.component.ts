@@ -15,6 +15,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
     SubmitMessage = ''; 
   
     private contactForm: AngularFirestoreCollection<any>;
+    
+  
 
     constructor(private fb: FormBuilder, private firestore: AngularFirestore) {
       
@@ -23,7 +25,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
   
   
     ngOnInit() {
-      this.contactForm = this.firestore.collection('enquiry');
+      this.contactForm = this.firestore.collection('enquiry', (ref)=>ref.orderBy('timestamp','desc'));
+      //this.contact = this.contactForm.valueChanges();
 
       this.myForm = this.fb.group({
         name: ['', Validators.required],
