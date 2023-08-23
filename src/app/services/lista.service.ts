@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable, map } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListaService {
-  constructor(private db: AngularFirestore) { }
 
+  constructor(private db: AngularFireDatabase) {}
 
-  getAllUsers() {
-    return new Promise<any>((resolve)=> {
-      this.db.collection('enquiry').valueChanges({ idField: 'name' }).subscribe(users => resolve(users));
-    })
+  getEnquiry(postId: string, offset: number, startKey?: boolean):AngularFireList<any> {
+
+    return this.db.list(`enquiry/${postId}`,ref => ref.orderByKey().startAt(startKey).limitToLast(offset+1));
+
+    
   }
-
-
 }
+
+
+
 

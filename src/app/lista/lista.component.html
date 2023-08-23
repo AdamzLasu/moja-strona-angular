@@ -1,8 +1,18 @@
 <div class="field">
-    {{allUsers}}
-<nav class="pagination is-rounded" role="navigation" aria-label="pagination">
-    <a class="pagination-previous">Previous</a>
-    <a class="pagination-next">Next page</a>
+  
+    
+      <h3>{{enquiry.name}}</h3>
+      <h3>{{enquiry.surname}}</h3>
+      <h3>{{enquiry.email}}</h3>
+      <h3>{{enquiry.message}}</h3>
+</div>   
+
+  <button (click)="prevPage()" [disabled]="!prevKeys?.length">Prev</button>
+  <button (click)="nextPage()" [disabled]="!nextKey">Next</button>
+
+  <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+    <a (click)="prevPage()" class="pagination-previous">Previous</a>
+    <a (click)="nextPage()" class="pagination-next">Next page</a>
     <ul class="pagination-list">
       <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
       <li><span class="pagination-ellipsis">&hellip;</span></li>
@@ -10,7 +20,6 @@
       <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">6</a></li>
       <li><a class="pagination-link" aria-label="Goto page 47">7</a></li>
       <li><span class="pagination-ellipsis">&hellip;</span></li>
-      <li><a class="pagination-link" aria-label="Goto page 86">15</a></li>
+      <li><a class="pagination-link" aria-label="Goto page 86">12</a></li>
     </ul>
   </nav>
-</div>
