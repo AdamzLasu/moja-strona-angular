@@ -4,142 +4,148 @@
       <h1 class="title is-2">Skontaktuj się z nami!</h1>
     </div>
   </div>
+</section>
 
   <!--Tabs-->
 
-  <div class="tabs is-centered is-boxed is-medium">
-    <ul>
-      <li class="is-active">
-        <a>
-          <span class="icon is-small">
-            <fa-icon class="fa-regular" [icon]="faEnvelope"></fa-icon>
-          </span>
-          <span>Formularz</span>
-        </a>
-      </li>
-      <li>
-        <a>
-          <span class="icon is-small">
-            <fa-icon class="fa-regular" [icon]="faList"></fa-icon>
-          </span>
-          <span>Lista</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <!--/Tabs-->
-
-</section>
-
-<section class="section">
-  <div class="container">
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">question_answer</mat-icon>
+      Formularz
+    </ng-template>
 
     <!--Form-->
 
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <section class="section">
       <div class="field">
-        <label class="label"> Imię: </label>
-        <input
-          type="text"
-          class="input"
-          formControlName="name"
-          placeholder="Twoje imię"/>
-
-        <div class="help is-error"
-          *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)">
-            Twoje imię jest wymagane.
-        </div>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="field">
+            <label class="label"> Imię: </label>
+            <input
+              type="text"
+              class="input"
+              formControlName="name"
+              placeholder="Twoje imię"/>
+    
+            <div class="help is-error"
+              *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)">
+                Twoje imię jest wymagane.
+            </div>
+          </div>
+    
+          <div class="field">
+            <label class="label"> Nazwisko: </label>
+            <input
+              type="text"
+              class="input"
+              formControlName="surname"
+              placeholder="Twoje nazwisko"/>
+    
+            <div class="help is-error"
+              *ngIf="myForm.get('surname').invalid && (myForm.get('surname').dirty || myForm.get('surname').touched)">
+                Twoje imię jest wymagane.
+            </div>
+          </div>
+    
+          <div class="field">
+            <label class="label"> E-mail: </label>
+            <input
+              type="email"
+              class="input"
+              formControlName="email"
+              placeholder="Twója email"/>
+    
+            <div class="help is-error"
+              *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
+                Twój adres e-mail jest wymagany i musi być poprawnym adresem e-mail.
+            </div>
+          </div>
+    
+          <div class="field">
+            <label class="label"> Wiadomość: </label>
+            <input
+              class="textarea"
+              formControlName="message"
+              placeholder="Twoja wiadomość"/>
+    
+            <div class="help is-error"
+              *ngIf="myForm.get('message').invalid && (myForm.get('message').dirty || myForm.get('message').touched)">
+                Wiadomości muszą mieć co najmniej 15 znaków.
+            </div>
+          </div>
+    
+          <div class="field">
+            <button
+              class="button is-large is-link is-rounded"
+              (click)="onSubmit()"
+              type="reset"
+              [disabled]="myForm.invalid">
+              Wyślij
+            </button>
+          </div>
+    
+          <div class="field">
+            <label class="label">
+              <p class="has-text-success" *ngIf="isSubmit">{{ SubmitMessage }}</p>
+            </label>
+          </div>
+    
+        </form>
       </div>
+    </section>
 
-      <div class="field">
-        <label class="label"> Nazwisko: </label>
-        <input
-          type="text"
-          class="input"
-          formControlName="surname"
-          placeholder="Twoje nazwisko"/>
-
-        <div class="help is-error"
-          *ngIf="myForm.get('surname').invalid && (myForm.get('surname').dirty || myForm.get('surname').touched)">
-            Twoje imię jest wymagane.
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label"> E-mail: </label>
-        <input
-          type="email"
-          class="input"
-          formControlName="email"
-          placeholder="Twója email"/>
-
-        <div class="help is-error"
-          *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
-            Twój adres e-mail jest wymagany i musi być poprawnym adresem e-mail.
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label"> Wiadomość: </label>
-        <input
-          class="textarea"
-          formControlName="message"
-          placeholder="Twoja wiadomość"/>
-
-        <div class="help is-error"
-          *ngIf="myForm.get('message').invalid && (myForm.get('message').dirty || myForm.get('message').touched)">
-            Wiadomości muszą mieć co najmniej 15 znaków.
-        </div>
-      </div>
-
-      <div class="field">
-        <button
-          class="button is-large is-link is-rounded"
-          (click)="onSubmit()"
-          type="reset"
-          [disabled]="myForm.invalid">
-          Wyślij
-        </button>
-      </div>
-
-      <div class="field">
-        <label class="label">
-          <p class="has-text-success" *ngIf="isSubmit">{{ SubmitMessage }}</p>
-        </label>
-      </div>
-
-    </form>
-  
     <!--/Form-->
-  
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">list</mat-icon>
+        Lista
+    </ng-template>
 
     <!--Table-->
 
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-      <thead>
-        <tr>
-          <th title="name">Imię</th>
-          <th title="surname">Nazwisko</th>
-          <th title="email">Email</th>
-          <th title="message">Wiadomość</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let e of enquiryy$ | async" pagination-template >
-          <td>{{ e.name }}</td>
-          <td>{{ e.surname }}</td>
-          <td>{{ e.email }}</td>
-          <td>{{ e.message }}</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <section class="section">
+      <div class="field">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th title="name">Imię</th>
+              <th title="surname">Nazwisko</th>
+              <th title="email">Email</th>
+              <th title="message">Wiadomość</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of enquiryy$ | async">
+              <td>{{ e.name }}</td>
+              <td>{{ e.surname }}</td>
+              <td>{{ e.email }}</td>
+              <td>{{ e.message }}</td>
+            </tr>
+          </tbody>
+        </table>
+      
+      
     <!--/Table-->
 
     <!--Paginator-->
-
+    <mat-paginator [length]="paginatorLength"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)">
+    </mat-paginator>
+      
+    </div>
+  </section>
+  
     <!--/Paginator-->
 
-  </div>
-</section>
+  </mat-tab>
+</mat-tab-group>
+
+  <!--/Tabs-->
+
+

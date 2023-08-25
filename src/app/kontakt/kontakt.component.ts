@@ -2,16 +2,15 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
-import { Observable } from "rxjs";
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Observable, map } from "rxjs";
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faList } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: "app-kontakt",
   templateUrl: "./kontakt.component.html",
-  styleUrls: [],
+  styleUrls: ["./kontakt.component.css"],
 })
 
 export class KontaktComponent implements OnInit {
@@ -21,22 +20,20 @@ export class KontaktComponent implements OnInit {
 
   enquiryy$: Observable<any[]>;
 
-  //icon
-  faEnvelope = faEnvelope;
-  faList = faList;
-
-  //pagination
-
-
+  //paginator
+  @ViewChild(MatPaginator, {static:true})
+  paginator: MatPaginator;
+  paginatorLength: number;
+  pageSize: number = 10;
+  currentPageIndex: number = 0;
 
   private contactForm: AngularFirestoreCollection<any>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private fb: FormBuilder, private firestore: AngularFirestore) {
     this.contactForm = this.firestore.collection('enquiry', (ref) => ref.orderBy('timestamp', 'desc')); 
     this.enquiryy$ = this.contactForm.valueChanges({});
-    this.paginator = this.paginator;
+
 
     this.myForm = this.fb.group({
       name: ["", Validators.required],
@@ -50,8 +47,28 @@ export class KontaktComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.updatePaginatorLength();
+    this.updatePageData(this.currentPageIndex, this.pageSize);
   }
+
+  updatePaginatorLength() {
+    this.enquiryy$.subscribe((data) =>{
+      this.paginatorLength = data.length;
+    });
+  }
+
+  onPageChange(event: PageEvent) {
+    this.currentPageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePageData(this.currentPageIndex, this.pageSize);
+  }
+
+  updatePageData(pageIndex: number, pageSize: number) {
+    const startIndex = pageIndex * pageSize;
+    const endIndex = startIndex + pageSize;
+    this.enquiryy$ = this.contactForm.valueChanges().pipe(map((data) => data.slice(startIndex, endIndex)));
+  }
+
 
   onSubmit() {
     if (this.myForm.valid) {
@@ -64,6 +81,8 @@ export class KontaktComponent implements OnInit {
           setTimeout(() => {
             this.isSubmit = false;
           }, 8000);
+          this.updatePaginatorLength();
+          this.updatePageData(this.currentPageIndex, this.pageSize);
         })
         .catch((err) => {
           console.error(err);

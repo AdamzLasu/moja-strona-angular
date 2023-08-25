@@ -8,7 +8,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table' 
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -53,7 +54,9 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     MatPaginatorModule,
     FontAwesomeModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
