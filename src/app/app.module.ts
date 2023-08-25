@@ -6,7 +6,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table' 
 
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { ContactComponent } from './contact/contact.component';
 import { CoreModule } from './core/core.module';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { ListaComponent } from './lista/lista.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAA3UjGOVJSIK0cthNXd6I83qB1tSprVH8",
@@ -46,7 +49,11 @@ const firebaseConfig = {
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    FontAwesomeModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

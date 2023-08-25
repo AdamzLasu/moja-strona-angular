@@ -53,6 +53,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "C:/Users/AK37093/Desktop/angular/moja-strona-angular/node_modules/bulma/css/bulma.css",
               "src/styles.css"
             ],

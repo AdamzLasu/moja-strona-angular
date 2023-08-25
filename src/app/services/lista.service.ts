@@ -9,15 +9,13 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/datab
 })
 export class ListaService {
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor() {}
 
-  getEnquiry(postId: string, offset: number, startKey?: boolean):AngularFireList<any> {
 
-    return this.db.list(`enquiry/${postId}`,ref => ref.orderByKey().startAt(startKey).limitToLast(offset+1));
 
     
   }
-}
+
 
 
 
