@@ -44,7 +44,7 @@
     
             <div class="help is-error"
               *ngIf="myForm.get('surname').invalid && (myForm.get('surname').dirty || myForm.get('surname').touched)">
-                Twoje imię jest wymagane.
+                Twoje nazwisko jest wymagane.
             </div>
           </div>
     
@@ -54,7 +54,7 @@
               type="email"
               class="input"
               formControlName="email"
-              placeholder="Twója email"/>
+              placeholder="Twój email"/>
     
             <div class="help is-error"
               *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
@@ -109,6 +109,12 @@
 
     <section class="section">
       <div class="field">
+
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Adam" #input>
+        </mat-form-field>
+
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <thead>
             <tr>
@@ -134,7 +140,7 @@
     <!--Paginator-->
     <mat-paginator [length]="paginatorLength"
     [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSizeOptions]="[3, 5, 10, 20]"
     (page)="onPageChange($event)">
     </mat-paginator>
       

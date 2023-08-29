@@ -4,8 +4,12 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
 import { Observable, map } from "rxjs";
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: "app-kontakt",
@@ -44,6 +48,10 @@ export class KontaktComponent implements OnInit {
     
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    
+  }
 
 
   ngOnInit() {
