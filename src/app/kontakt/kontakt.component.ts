@@ -9,6 +9,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
 import { filter } from 'rxjs/operators';
+import { AbstractFiltrService } from "../abstract/abstract-filtr.service";
 
 
 @Component({
@@ -34,9 +35,12 @@ export class KontaktComponent implements OnInit {
   private contactForm: AngularFirestoreCollection<any>;
 
 
-  constructor(private fb: FormBuilder, private firestore: AngularFirestore) {
-    this.contactForm = this.firestore.collection('enquiry', (ref) => ref.orderBy('timestamp', 'desc')); 
-    this.enquiryy$ = this.contactForm.valueChanges({});
+  constructor(
+    private fb: FormBuilder, 
+    private firestore: AngularFirestore, 
+    private filtr: AbstractFiltrService) {
+      this.contactForm = this.firestore.collection('enquiry', (ref) => ref.orderBy('timestamp', 'desc')); 
+      this.enquiryy$ = this.contactForm.valueChanges({});
 
 
     this.myForm = this.fb.group({
@@ -91,6 +95,7 @@ export class KontaktComponent implements OnInit {
           }, 8000);
           this.updatePaginatorLength();
           this.updatePageData(this.currentPageIndex, this.pageSize);
+          this.filtr.logMes('Nowa widomość');
         })
         .catch((err) => {
           console.error(err);
@@ -119,5 +124,3 @@ export class KontaktComponent implements OnInit {
     //console.log('Email', form.value.email);
     //console.log('Message', form.value.message);
     //this.httpClient.post("https://moja-strona-angular-default-rtdb.europe-west1.firebasedatabase.app/", form.value.myForm).subscribe()
-
-  
